@@ -6,7 +6,7 @@ import '../style/Headline.scss'
 
 const Headline = () => {
   return (
-    <div class="headline">
+    <div className="headline">
       <h1>
         <span className="primary">GPD MOVIES</span><br />
         <span className="secondary">
