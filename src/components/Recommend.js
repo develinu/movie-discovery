@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../style/Recommend.scss'
+import { getMovies } from '../data/movieAPI'
 import MovieCard from './MovieCard'
 
 
 const Recommend = () => {
+
+  useEffect(() => {
+    getMovies()
+  }, [])
 
   const name = ["이누", "대지", "가을", "동주"]
   const [movie, setMovie] = useState({})
@@ -28,17 +33,11 @@ const RecommendBelt = ({ name }) => {
       </div>
 
       <div className="recommend-list">
-          <div className="btn">
-            ＜
-          </div>
           <MovieCard />
           <MovieCard />
           <MovieCard />
           <MovieCard />
           <MovieCard />
-          <div className="btn">
-            ＞
-          </div>
       </div>
     </div>
   )
