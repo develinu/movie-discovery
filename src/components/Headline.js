@@ -14,7 +14,7 @@ const Headline = () => {
           FINAL HOMEWORK
         </span>
       </h1>
-      <div class="description">
+      <div className="description">
         <p>
           This page is the last homework assignment for the GPD React Study.
         </p>
