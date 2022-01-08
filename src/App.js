@@ -1,6 +1,7 @@
 import { Route } from 'react-router-dom'
 
 import './App.scss';
+import Footer from './components/Footer';
 import Header from './components/Header'
 import Headline from './components/Headline';
 import MovieDetail from './components/MovieDetail';
@@ -25,7 +26,7 @@ function App() {
         <Route exact path="/recommend">
           <Recommend />
         </Route>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-export const githubRepository = "https://github.com/develinu/react-movie-app"
+export const githubRepository = "https://github.com/develinu/movie-discovery"
 
 export const menus = [
   {
