@@ -1,0 +1,61 @@
+$color--black: #0E111B;
+$color--black-90: rgba(#0E111B, .9);
+$color--black-50: rgba(#0E111B, .5);
+
+$color--white: #fff;
+$color--white-70: rgba(#fff, .7);
+$color--white-60: rgba(#fff, .6);
+$color--white-50: rgba(#fff, .5);
+$color--white-30: rgba(#fff, .3);
+$color--white-10: rgba(#fff, .1);
+$color--white-5: rgba(#fff, .05);
+
+$color--primary: #FDC000;
+$color--area: #1C212E;
+
+$tablet: "all and (max-width: 1200px)";
+$mobile: "all and (max-width: 720px)";
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 0 0;
+  position: relative;
+
+  @media #{$tablet} {
+    padding: 40px 40px 0;
+  }
+
+  @media #{$mobile} {
+    padding: 40px 20px 0;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+* {
+  box-sizing: border-box;
+}
+html, body{
+  height: 100%;
+}
+body {
+  background: $color--black;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+}    
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                        supported by Chrome, Edge, Opera and Firefox */
+}

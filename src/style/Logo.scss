@@ -1,0 +1,29 @@
+@import './global';
+
+a {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;  
+  text-decoration: none;
+  
+  span {    
+    &.primary {
+      color: $color--primary;
+
+    }
+
+    &.secondary {
+      color: $color--white-50;      
+    }
+  }
+
+  &:hover {
+    .primary {
+      color: lighten($color--primary, 20%);
+    }
+    
+    .secondary {
+      color: $color--white-70;
+    }    
+  }
+}

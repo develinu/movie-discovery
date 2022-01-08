@@ -1,0 +1,140 @@
+@import './global';
+
+.skeleton-loader {
+  display: flex;
+  .poster {
+    @media #{$mobile} {
+      display: none;
+    }
+  }
+  .skeletons {
+    flex: 1;
+    .skeleton {
+      width: 100%;
+      height: 100px;
+      background-color: $color--area;
+      border-radius: 8px;
+      margin-top: 20px;
+      &:first-child {
+        margin-top: 0;          
+      }
+      &.title {
+        height: 100px;          
+      }
+      &.specs {
+        width: 60%;
+        height: 30px;
+      }
+      &.plot {
+        height: 300px;
+      }
+      &.etc {
+        width: 40%;
+        height: 50px;
+      }
+    }
+  }
+}
+.movie-details {
+  color: $color--white-50;
+  display: flex;
+  @media #{$mobile} {
+    display: block;
+  }    
+}
+
+.poster {
+  position: relative;
+  flex-shrink: 0;
+  width: 500px;
+  height: 500px * 3/2;
+  border-radius: 10px;
+  margin-right: 70px;
+  background-color: $color--area;
+  background-position: center;
+  background-size: cover;  
+
+  @media #{$tablet} {
+    width: 300px;
+    height: 300px * 3/2;
+    margin-right: 30px;
+  }
+  
+  @media #{$mobile} {
+    margin-right: 0;
+    margin-bottom: 50px;
+  }
+
+  .like {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid $color--white-50;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid $color--white;
+      color: $color--white;
+
+      span {
+        color: $color--white;
+      }
+    }
+
+    span {
+      font-size: 20px;
+      font-weight: 700;
+      color: $color--white-50;
+    }
+  }
+}
+.specs {
+  .title {
+    font-family: "Oswald", sans-serif;
+    font-size: 70px;
+    color: $color--white;
+    line-height: 1;
+    margin-bottom: 30px;
+    @media #{$mobile} {
+      font-size: 50px;
+    }
+  }
+  .labels {
+    color: $color--primary;
+    .dot {
+      margin: 0 6px;
+    }
+  }
+  .plot {
+    margin-top: 20px;
+  }
+  .ratings {
+    .rating-wrap {
+      display: flex;
+      .rating {
+        display: flex;
+        align-items: center;
+        margin-right: 32px;
+        @media #{$tablet} {
+          transform: scale(.85);
+          transform-origin: left;
+          margin-right: 0;
+        }
+        img {
+          flex-shrink: 0;
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+  h3 {
+    color: $color--white;
+    margin: 24px 0 6px;
+    font-family: "Oswald", sans-serif;
+    font-size: 20px;
+  }
+}

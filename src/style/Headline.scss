@@ -1,0 +1,26 @@
+@import './global';
+
+.headline {
+  h1 {
+    font-size: 80px;
+    font-family: 'Oswald', sans-serif;
+    line-height: 1;
+    @media #{$mobile} {
+      font-size: 60px;
+    }      
+    span {
+
+      &.primary {
+        color: $color--primary;
+      }
+
+      &.secondary {
+        color: $color--white;
+      }      
+    }
+  }
+  .description {
+    margin: 30px 0;
+    color: $color--white-30;
+  }
+}  

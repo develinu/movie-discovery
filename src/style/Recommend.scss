@@ -1,0 +1,14 @@
+@import './global';
+
+.recommend-belt {
+  .title {
+    color: $color--white;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .recommend-list {
+    display: flex;
+    padding: 20px 0;
+  }
+}

@@ -1,0 +1,43 @@
+@import './global';
+
+header {
+  padding: 12px 40px;
+  background-color: $color--black-90;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  
+  @media #{$mobile} {
+    padding: 14px 20px;
+  }  
+
+  .github {
+    width: 34px;
+    height: 34px;
+    padding: 0px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-color: $color--white-60;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 40px;
+    margin: auto;
+    transition: .4s;
+    @media #{$mobile} {
+      right: 20px;
+    }
+    
+    &:hover {
+      background-color: $color--white;
+    }
+    
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

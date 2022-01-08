@@ -1,0 +1,36 @@
+@import './global';
+
+.top-nav {
+  margin-left: 40px;
+  
+  @media #{$mobile} {
+    display: none;
+  }
+  
+  ul {
+    display: flex;
+    
+    li {
+      margin-left: 10px;
+      list-style:none;
+      
+      &:first-child {
+        margin-left: 0;
+      }
+      
+      a {
+        font-size: 14px;
+        font-weight: 700;
+        color: $color--white-50;
+        text-decoration: none;
+
+        &:hover {
+          color: $color--white;
+        }
+      }
+    }
+  }
+  .is-active {
+    color: $color--primary !important; 
+  }
+}
