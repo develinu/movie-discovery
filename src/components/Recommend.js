@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import '../style/Recommend.scss'
-import { getMovies } from '../data/movieAPI'
+import { getMovies } from '../data/movieApi'
 import MovieCard from './MovieCard'
 
 
