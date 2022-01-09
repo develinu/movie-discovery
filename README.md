@@ -74,7 +74,7 @@
 ```javascript
 // 찜하기 데이터 구조
 {
-  "name": "String",
+  "userId": "String",
   "movies": "Array"
 }
 ```
