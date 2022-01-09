@@ -219,7 +219,7 @@
 
    **필수 :**
  
-   `userId - String`  : 유저 아이디
+   `userId - String`  : 유저 아이디   
    `movieId - String` : 영화 아이디
 
 * **응답 :**
