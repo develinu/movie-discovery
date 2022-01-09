@@ -5,7 +5,9 @@ export const getMovies = () => {
   axios.get(
     `${process.env.REACT_APP_API_ENDPOINT}/movie/list?title=lion&type=movie`,
     {
-      'x-api-key': process.env.REACT_APP_API_KEY
+      headers: {
+        'x-api-key': process.env.REACT_APP_API_KEY
+      }
     }
   )
   .then(d => {console.log("success : ", d)})
