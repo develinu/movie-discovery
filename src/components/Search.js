@@ -9,7 +9,7 @@ const Search = () => {
     'Series',
     'Episode'
   ]
-  const years = []
+  const years = ["All"]
   for (let y = new Date().getFullYear(); y >= 2000 ; y--) {
     years.push(y)
   }
@@ -35,7 +35,7 @@ const Search = () => {
       </div>
 
       <div className="select">
-        <select defaultValue={years[0]}>
+        <select defaultValue="All">
         {
           years.map((year, idx) => {
             return (
