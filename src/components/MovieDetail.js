@@ -1,121 +1,160 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 import '../style/MovieDetail.scss'
 import Loader from './Loader'
+import { userId, getMovie, getLikeMoves, addLikeMovie } from '../data/movieApi'
 
 
 const MovieDetail = () => {
 
   const [movie, setMovie] = useState({})
-  
-  let loading = false
-  let imageLoading = false
+  const [loading, setLoading] = useState(true)
+  const [imageLoading, setImageLoading] = useState(true)
+  const [like, setLike] = useState(false)
+  const { id } = useParams()
+
+  useEffect(() => {
+    getMovieDetail()
+    getLikeMovie()
+  }, [])
+
+  const getMovieDetail = async () => {
+    const _movie = await getMovie(id)
+    setMovie(_movie?.data)
+    setLoading(false)
+  }
+
+  const getLikeMovie = async () => {
+    const _likeMovies = await getLikeMoves(userId)
+    if (_likeMovies.data?.movies.includes(id)) {
+      setLike(true)
+    }
+  }
+
+  const onLikeMovie = async () => {
+    await addLikeMovie(userId, id)
+  }
+
+  const onLikeHandle = async () => {
+    if (like) {
+      return
+    }
+
+    await onLikeMovie()
+    await getLikeMovie()
+  }
 
   function requestDifferentSizeImage(url, size=700) {
     if (!url) {
       return ""
     }
     const src = url.replace("SX300", `SX${size}`)
-    const img = document.createElement('img')
+    const img = new Image()
     img.src = src
-    img.addEventListener('load', () => {
-      imageLoading = false
-    })
+    img.onload = () => {
+      setImageLoading(false)
+    }
     return src
   }
 
   return (
-    <div class="container">
+    <div className="container">
       {
-        loading
-        
+        loading        
         ?  // 로딩중인 경우
-        <div class="skeleton-loader">
-          <div class="poster">
+        <div className="skeleton-loader">
+          <div className="poster">
 
           </div>
-          <div class="skeletons">
-            <div class="skeleton title"></div>
-            <div class="skeleton specs"></div>
-            <div class="skeleton plot"></div>
-            <div class="skeleton etc"></div>
-            <div class="skeleton etc"></div>
-            <div class="skeleton etc"></div>
+          <div className="skeletons">
+            <div className="skeleton title"></div>
+            <div className="skeleton specs"></div>
+            <div className="skeleton plot"></div>
+            <div className="skeleton etc"></div>
+            <div className="skeleton etc"></div>
+            <div className="skeleton etc"></div>
           </div>
           <Loader absolute />
         </div>
         
         :  // 로딩이 끝난 경우
-        <div class="movie-details">
+        <div className="movie-details">
           <div 
-            class="poster"
+            className="poster"
             style={{ backgroundImage: `url(${requestDifferentSizeImage(movie?.Poster)})` }}>
             {
               imageLoading
               ? <Loader scale=".7" absolute />
               : null
             }
-            <div className='like noselect'>
-              <span>♥</span>
+            <div className='like noselect' onClick={onLikeHandle}>
+              <span>{like ? "♥" : "♡" }</span>
             </div>
           </div>
 
-          <div class="specs">
+          <div className="specs">
 
-            <div class="title">
-              {/* 영화 타이틀 */}
+            <div className="title">
+              {movie.Title}
             </div>
 
-            <div class="labels">
+            <div className="labels">
               <span>
-                {/* 개봉 날짜 */}
+                {movie.Released}
               </span>
-              <span class="dot">·</span>
+              <span className="dot">·</span>
               <span>
-                {/* 상영 시간 */}
+                {movie.Runtime}
               </span>
-              <span class="dot">·</span>
+              <span className="dot">·</span>
               <span>
-                {/* 국가(지역) */}
+                {movie.Contry}
               </span>
             </div>
-            <div class="plot">
-              {/* 설명 */}
+            <div className="plot">
+              {movie.Plot}
             </div>
-            <div class="ratings">
+            <div className="ratings">
               <h3>Ratings</h3>
-              <div class="rating-wrap">
+              <div className="rating-wrap">
                 {
-                  /* movie.Ratings를 순회하여 이미지 및 점수를 표출 */
-                  <div
-                    title="" // 출처(Source)
-                    class="rating">
-                    <img 
-                      src="" // /assets/{Source}.png
-                      alt="" // Source
-                      height="30" />
-                    <span>
-                      {/* 평점 */}
-                    </span>
-                  </div>
+                  movie.Ratings
+                  ? movie.Ratings.map((rating, idx) => {
+                    return (
+                      <div 
+                        key={idx}
+                        title={rating.Source}
+                        className="rating">
+                        <img 
+                          src={`/assets/${rating.Source}.png`}
+                          alt={rating.Source}
+                          height="30" />
+                        <span>
+                          {rating.Value}
+                        </span>
+                      </div>
+                    )
+                  })
+                  : null
                 }
               </div>
             </div>
             <div>
               <h3>Actors</h3>          
-              {/* 배우(Actor) */}
+              {movie.Actor}
             </div>
             <div>
               <h3>Director</h3>
-              {/* 감독(Director) */}
+              {movie.Director}
             </div>
             <div>
               <h3>Production</h3>
-              {/* 제작사 */}
+              {movie.Production}
             </div>
             <div>
               <h3>Genre</h3>
-              {/* 장르 */}
+              {movie.Genre}
             </div>
           </div>
         </div>
