@@ -118,14 +118,16 @@
   * **응답코드 :** 200 <br />
     **내용 :** 
     ```
-    {
-        Poster: "https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg"
-        Title: "The Lion King"
-        Type: "movie"
-        Year: "1994"
-        imdbID: "tt0110357"
-    },
-    ...
+    [
+        {
+            Poster: "https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg"
+            Title: "The Lion King"
+            Type: "movie"
+            Year: "1994"
+            imdbID: "tt0110357"
+        },
+        ...
+    ]
     ```
 
 **2. 영화 상세 내용 가져오기**
