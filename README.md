@@ -75,8 +75,7 @@
 // 찜하기 데이터 구조
 {
   "name": "String",
-  "movieId": "String",
-  "like": "boolean"
+  "movies": "Array"
 }
 ```
 
