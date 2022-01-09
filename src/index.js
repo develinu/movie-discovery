@@ -4,12 +4,45 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
 
+
+const searchReducer = (state=false, action) => {
+  switch(action.type) {
+    case 'start':
+      return true
+    case 'done':
+      return false
+    default:
+      break
+  }
+  return state
+}
+
+const moviesReducer = (state=[], action) => {
+  let _state = [...state]
+
+  switch(action.type) {
+    case 'setMovies':
+      if (action.payload.item) {
+        _state = action.payload.item
+      }      
+      break
+    default:
+      break
+  }
+  return _state
+}
+
+const store = createStore(combineReducers({searchReducer, moviesReducer}))
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
