@@ -1,9 +1,13 @@
 import React from 'react'
 import '../style/Search.scss'
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { getMovies } from '../data/movieApi'
 
 
-const Search = () => {
+const Search = () => { 
+
   const types = [
     'Movie',
     'Series',
@@ -14,16 +18,48 @@ const Search = () => {
     years.push(y)
   }
 
+  const [title, setTitle] = useState('')
+  const [selectType, setSelectType] = useState(types[0])
+  const [selectYear, setSelectYear] = useState(years[0])
+
+  const dispatch = useDispatch()
+
+  const formValidation = () => {
+    if (!title || title.length === 0) {
+      alert("타이틀을 입력해주세요!")
+    }
+
+    if (selectYear === years[0]) {
+      setSelectYear("")
+    }
+    
+    return true
+  }
+
+  const onSearchHandler = async () => {
+    if (!formValidation) {
+      return
+    }
+
+    dispatch({ type: 'start' })
+    const response = await getMovies(title, selectType, selectYear)
+    dispatch({ type: 'setMovies', payload: { item: response?.data?.Search } })
+    dispatch({ type: 'done' })
+  }
+
   return (
     <div className="search">
       <div className="text-field">
         <input 
           type="text" 
-          placeholder="Search for Movies, Series & more" />
+          placeholder="Search for Movies, Series & more" 
+          onChange={e => { setTitle(e.target.value) }}/>
       </div>
 
       <div className="select">
-        <select defaultValue={types[0]}>
+        <select 
+          defaultValue={selectType} 
+          onChange={e => { setSelectType(e.target.value.toLowerCase()) }}>
         {
           types.map((type, idx) => {
             return (
@@ -35,7 +71,9 @@ const Search = () => {
       </div>
 
       <div className="select">
-        <select defaultValue="All">
+        <select 
+          defaultValue={selectYear}
+          onChange={e => { setSelectYear(e.target.value) }}>
         {
           years.map((year, idx) => {
             return (
@@ -46,7 +84,9 @@ const Search = () => {
         </select>        
       </div>
 
-      <button className="btn"> Apply </button>
+      <button 
+        className="btn"
+        onClick={onSearchHandler}> Apply </button>
     </div>
   )
 }
