@@ -67,8 +67,8 @@
 5. `MovieCard` 클릭 시 `/movie/:id` 경로로 라우팅 후에 `axios`를 통한 영화 상세 정보 요청을 구현해주세요.
 6. 영화 상세 정보를 가져오는 도중에는 Loader를 활용하여 로딩중 효과를 적용해주세요.
 7. 데이터를 가져오면 `MovieDetail` 컴포넌트에 데이터를 뿌려주세요.
-8. 영화 상세 페이지에서 ♡가 비활성 상태일 때 누르면 서버에 해당 데이터를 저장해주세요.
-9. 영화 상세 페이지에서 ♡가 활성 상태일 때 누르면 서버에서 해당 데이터를 삭제해주세요.
+8. 영화 상세 페이지에서 ♡가 비활성 상태일 때 누르면 서버에 해당 데이터를 저장해주세요.   
+이후에는 다시 눌러도 아무 동작도 안하도록 구현해주세요.(삭제 API 개발 안됨)
 10. Footer.js의 Created by 부분의 이름을 수정해주세요.
 
 ```javascript
@@ -88,3 +88,138 @@
 3. 해당 요청은 컴포넌트 최초 로드 시 한 번만 요청되도록 구현해주세요.
 
 # API 명세
+  다음은 API 명세입니다.   
+  해당 API 명세를 참고하여 구현해주세요.
+  API의 Endpoint는 배포 된 .env 파일 내에 환경 변수로 작성되어 있습니다.   
+  사용 방법은 `data/movieApi.js`의 샘플 코드를 참고해주세요.
+
+**1. 검색 영화 목록 가져오기**
+----
+  키워드로 검색하여 영화 목록을 가져옵니다.
+
+* **경로 :** `/list`
+  
+* **Method :** `GET`
+  
+*  **URL Params**
+
+   **필수 :**
+ 
+   `title - String` : 검색 할 영화 키워드
+
+   **선택 :**
+ 
+   `type - movie|series|episode`  : 검색 유형   
+   `year - Integer` : 영화의 출시 연도(기본 값 : "All years")   
+   `page - Integer` : 반환 될 검색 결과의 개수(기본 값 : 10)   
+
+* **응답 :**
+
+  * **응답코드 :** 200 <br />
+    **내용 :** 
+    ```
+    {
+        Poster: "https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg"
+        Title: "The Lion King"
+        Type: "movie"
+        Year: "1994"
+        imdbID: "tt0110357"
+    },
+    ...
+    ```
+
+**2. 영화 상세 내용 가져오기**
+----
+  영화의 상세 내용을 가져옵니다.
+
+* **경로 :** `/detail`
+  
+* **Method :** `GET`
+  
+*  **URL Params**
+
+   **필수 :**
+ 
+   `id - String` : 영화 아이디
+
+* **응답 :**
+
+  * **응답코드 :** 200 <br />
+    **내용 :** 
+    ```
+    {
+        Actors: "Matthew Broderick, Jeremy Irons, James Earl Jones"
+        Awards: "Won 2 Oscars. 39 wins & 35 nominations total"
+        BoxOffice: "$422,783,777"
+        Country: "United States"
+        DVD: "04 Oct 2011"
+        Director: "Roger Allers, Rob Minkoff"
+        Genre: "Animation, Adventure, Drama"
+        Language: "English, Swahili, Xhosa, Zulu"
+        Metascore: "88"
+        Plot: "A young lion prince is cast out of his pride by his cruel uncle, who claims he killed his father. While the uncle rules with an iron paw, the prince grows up beyond the Savannah, living by a philosophy: No worries for the rest of your days. But when his past comes to haunt him, the young prince must decide his fate: Will he remain an outcast or face his demons and become what he needs to be?"
+        Poster: "https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg"
+        Production: "N/A"
+        Rated: "G"
+        Ratings: (3) [{…}, {…}, {…}]
+        Released: "24 Jun 1994"
+        Response: "True"
+        Runtime: "88 min"
+        Title: "The Lion King"
+        Type: "movie"
+        Website: "N/A"
+        Writer: "Irene Mecchi, Jonathan Roberts, Linda Woolverton"
+        Year: "1994"
+        imdbID: "tt0110357"
+        imdbRating: "8.5"
+        imdbVotes: "995,272"
+    }
+    ```
+
+**3. 좋아하는 영화 리스트 가져오기**
+----
+  특정 유저의 좋아하는 영화 목록을 가져옵니다.
+
+* **경로 :** `/like`
+  
+* **Method :** `GET`
+  
+*  **URL Params**
+
+   **필수 :**
+ 
+   `userId - String` : 유저 아이디
+
+* **응답 :**
+
+  * **응답코드 :** 200 <br />
+    **내용 :** 
+    ```
+    {
+        "movies": [
+            "tt238744",
+            "tt238745",
+            "tt238745"
+        ],
+        "userId": "INU"
+    }
+    ```
+
+**4. 좋아하는 영화 추가하기**
+----
+  특정 유저의 좋아하는 영화 목록에 영화를 추가합니다.
+
+* **경로 :** `/like`
+  
+* **Method :** `POST`
+  
+*  **URL Params**
+
+   **필수 :**
+ 
+   `userId - String`  : 유저 아이디
+   `movieId - String` : 영화 아이디
+
+* **응답 :**
+
+  * **응답코드 :** 200 <br />
