@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 import '../style/MovieList.scss'
 import Loader from './Loader'
@@ -7,24 +8,26 @@ import MovieCard from './MovieCard'
 
 
 const MovieList = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [movies, setMovies] = useState([])
+  const { searchReducer, moviesReducer } = useSelector(state => state)
 
   return (
     <div className="movie-list">
       {
-        isLoading
+        searchReducer
         ? <Loader />
-        : null
+        : 
+          <div className="message">
+            Search for the movie title!
+          </div>
       }
       
-      <div className="message">
-        Search for the movie title!
-      </div>
+      
       <div className="movies">
         {
-          movies.length > 0
-          ? <MovieCard />
+          moviesReducer.length > 0
+          ? moviesReducer.map(movie => {
+            return <MovieCard key={movie.imdbID} movie={movie} />
+          })
           : null
         }
       </div>
