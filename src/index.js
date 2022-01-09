@@ -29,6 +29,9 @@ const moviesReducer = (state=[], action) => {
         _state = action.payload.item
       }      
       break
+    case 'clearMovies':
+      _state = []
+      break
     default:
       break
   }
