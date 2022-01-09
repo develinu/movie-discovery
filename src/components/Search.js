@@ -36,11 +36,16 @@ const Search = () => {
     return true
   }
 
+  const clearMovies = () => {
+    dispatch({ type: 'clearMovies' })
+  }
+
   const onSearchHandler = async () => {
     if (!formValidation) {
       return
     }
 
+    clearMovies()
     dispatch({ type: 'start' })
     const response = await getMovies(title, selectType, selectYear)
     dispatch({ type: 'setMovies', payload: { item: response?.data?.Search } })
