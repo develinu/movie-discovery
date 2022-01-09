@@ -15,7 +15,7 @@ export const getMovies = (title, type, year) => {
 
 // 영화 상세 내용 가져오기
 export const getMovie = (id) => {
-  axios.get(
+  return axios.get(
     `${process.env.REACT_APP_API_ENDPOINT}/movie/detail?id=${id}`,
     {
       headers: {
@@ -28,7 +28,7 @@ export const getMovie = (id) => {
 
 // 좋아하는 영화 리스트 가져오기
 export const getLikeMoves = (userId) => {
-  axios.get(
+  return axios.get(
     `${process.env.REACT_APP_API_ENDPOINT}/movie/likes?userId=${userId}`,
     {
       headers: {
@@ -41,7 +41,7 @@ export const getLikeMoves = (userId) => {
 
 // 좋아하는 영화 추가하기
 export const addLikeMove = (userId, movieId) => {
-  axios.post(
+  return axios.post(
     `${process.env.REACT_APP_API_ENDPOINT}/movie/likes?userId=${userId}&movieId=${movieId}`,
     {
       headers: {
