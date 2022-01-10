@@ -10,15 +10,24 @@ import MovieCard from './MovieCard'
 const MovieList = () => {
   const { searchReducer, moviesReducer } = useSelector(state => state)
 
+  const getDefaultComponent = () => {
+    if (searchReducer) {
+      return <Loader />
+    } else if (!searchReducer && moviesReducer.length === 0) {
+      return (
+        <div className="message">
+          Search for the movie title!
+        </div>
+      )
+    }
+
+    return null
+  }
+
   return (
     <div className="movie-list">
       {
-        searchReducer
-        ? <Loader />
-        : 
-          <div className="message">
-            Search for the movie title!
-          </div>
+        getDefaultComponent()
       }
       
       
