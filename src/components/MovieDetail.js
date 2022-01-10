@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import '../style/MovieDetail.scss'
 import Loader from './Loader'
-import { userId, getMovie, getLikeMoves, addLikeMovie } from '../data/movieApi'
+import { userId, getMovie, getLikeMovies, addLikeMovie } from '../data/movieApi'
 
 
 const MovieDetail = () => {
@@ -26,8 +26,8 @@ const MovieDetail = () => {
   }
 
   const getLikeMovie = async () => {
-    const _likeMovies = await getLikeMoves(userId)
-    if (_likeMovies.data?.movies.includes(id)) {
+    const _likeMovies = await getLikeMovies(userId)
+    if (_likeMovies.data?.movies?.includes(id)) {
       setLike(true)
     }
   }
