@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const userId = "INU"
+export const userId = "이누"
 
 // 검색 영화 목록 가져오기
 export const getMovies = (title, type, year) => {
@@ -28,7 +28,7 @@ export const getMovie = (id) => {
 }
 
 // 좋아하는 영화 리스트 가져오기
-export const getLikeMoves = (userId) => {
+export const getLikeMovies = (userId) => {
   return axios.get(
     `${process.env.REACT_APP_API_ENDPOINT}/movie/like?userId=${userId}`,
     {
