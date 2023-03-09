@@ -8,7 +8,7 @@ import { getLikeMovies, getMovie } from '../data/movieApi'
 
 const Recommend = () => {
 
-  const users = ["이누", "대지", "가을", "동주"] 
+  const users = ["devinu"] 
 
   return (
     <>
@@ -57,7 +57,7 @@ const RecommendBelt = ({ userId }) => {
         : 
         <>
         <div className="title">
-          {userId}님이 좋아하는 영화 리스트
+          {userId}님이 좋아할 만한 영화 리스트
         </div>
 
         <div className="recommend-list">
